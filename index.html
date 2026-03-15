@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saki's Gallery</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f0f0f;
+    color:white;
+}
+
+header{
+    position:relative;
+    text-align:center;
+    padding:40px;
+}
+
+/* Social Links */
+
+.social-links{
+    position:absolute;
+    top:20px;
+    right:30px;
+    display:flex;
+    gap:15px;
+}
+
+.social-links a{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    padding:8px 14px;
+    border-radius:8px;
+    background:#1a1a1a;
+    transition:background .3s, transform .2s;
+}
+
+.social-links a:hover{
+    background:#333;
+    transform:translateY(-2px);
+}
+
+.social-links svg{
+    width:18px;
+    height:18px;
+    fill:white;
+}
+
+.icon{
+    width:18px;
+    height:18px;
+    	
+}
+
+/* Masonry Layout */
+
+.gallery{
+    column-count:4;
+    column-gap:20px;
+    padding:30px;
+}
+
+@media (max-width:1200px){
+    .gallery{ column-count:3; }
+}
+
+@media (max-width:800px){
+    .gallery{ column-count:2; }
+}
+
+@media (max-width:500px){
+    .gallery{ column-count:1; }
+}
+
+.photo{
+    margin-bottom:20px;
+    break-inside:avoid;
+    border-radius:12px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(0,0,0,0.6);
+}
+
+.photo img{
+    width:100%;
+    display:block;
+    transition:transform .35s ease;
+}
+
+.photo:hover img{
+    transform:scale(1.05);
+}
+
+/* Lightbox */
+
+#lightbox{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.95);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+}
+
+#lightbox img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="social-links">
+
+<a href="https://x.com/dragon_of_doma" target="_blank">
+<img src="icons/x.svg" class="icon">
+X
+</a>
+
+<a href="https://bsky.app/profile/dragon-of-doma.bsky.social" target="_blank">
+<img src="icons/bluesky.svg" class="icon">
+Bluesky
+</a>
+
+</div>
+
+<h1>Saki's Gallery</h1>
+<p>Click a photo to view full size</p>
+
+</header>
+
+<div class="gallery">
+
+<div class="photo"><img src="images/photo1.png"></div>
+<div class="photo"><img src="images/photo2.png"></div>
+<div class="photo"><img src="images/photo3.png"></div>
+<div class="photo"><img src="images/photo4.png"></div>
+<div class="photo"><img src="images/photo5.png"></div>
+<div class="photo"><img src="images/photo6.png"></div>
+
+</div>
+
+<div id="lightbox">
+<img src="">
+</div>
+
+<script>
+
+const lightbox = document.getElementById("lightbox")
+const lightboxImg = lightbox.querySelector("img")
+
+document.querySelectorAll(".gallery img").forEach(img=>{
+    img.addEventListener("click",()=>{
+        lightbox.style.display="flex"
+        lightboxImg.src = img.src
+    })
+})
+
+lightbox.addEventListener("click",()=>{
+    lightbox.style.display="none"
+})
+
+</script>
+
+</body>
+</html>
